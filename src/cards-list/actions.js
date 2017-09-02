@@ -1,16 +1,18 @@
 import {
   FETCH_CARDS_SUCCESS,
   FETCH_CARDS_FAILURE,
-  FETCH_CARDS
+  FETCH_CARDS_REQUEST,
 } from './types';
 
-const fetchCards = () => {
+const fetchCardsRequest = (page, pageSize) => {
   return ({
-    type: FETCH_CARDS,
+    type: FETCH_CARDS_REQUEST,
+    page: page,
+    pageSize: pageSize
   });
 };
 
-const fetchCardsSuccess = (cards) => {
+const fetchCardsSuccess = (cards, pageSize) => {
   return (
     {
       type: FETCH_CARDS_SUCCESS,
@@ -29,7 +31,7 @@ const fetchCardsFailure = (errors) => {
 };
 
 export {
-  fetchCards,
+  fetchCardsRequest,
   fetchCardsSuccess,
   fetchCardsFailure,
 }
