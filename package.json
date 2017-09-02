@@ -1,0 +1,29 @@
+{
+  "name": "mtg-management",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "antd": "^2.12.8",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.12",
+    "redux": "^3.7.2",
+    "redux-observable": "^0.16.0",
+    "rxjs": "^5.4.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "redux-logger": "^3.0.6"
+  }
+}
