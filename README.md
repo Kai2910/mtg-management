@@ -4,3 +4,4 @@
  - Make a Pagesize filter. How much Cards are shown at a Page
  - Make Filter  by color, manacost, set
  - Search by name
+ - Refactor Code cards-list
