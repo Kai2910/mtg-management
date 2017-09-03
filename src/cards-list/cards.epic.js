@@ -25,7 +25,7 @@ const fetchCardsEpic = action$ =>
 const searchCardsEpic = action$ =>
   action$.ofType(SEARCH_CARDS_REQUEST)
     .mergeMap((action) => {
-      return Api.getCards(action, action.keyword)
+      return getCards(action, action.keyword)
         .map((response) => {
           return searchCardsSuccess(response.cards)
         })

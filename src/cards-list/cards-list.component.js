@@ -58,7 +58,7 @@ class CardsList extends React.Component {
           {
             _.size(searchResult) === 0 &&
               cards.map((card) => {
-                return <Col xs={13} sm={10} md={7} lg={5} xl={4} key={card.multiverseid}>
+                return <Col span={5} key={card.multiverseid}>
                   <Card
                     style={{ width: 240 }}
                     bodyStyle={{ padding: 0 }}
@@ -75,7 +75,7 @@ class CardsList extends React.Component {
           {
             _.size(searchResult) > 0 &&
             searchResult.map((card) => {
-              return <Col xs={2} sm={4} md={6} lg={8} xl={10} key={card.multiverseid}>
+              return <Col span={5} key={card.multiverseid}>
                 <Card
                   style={{ width: 240 }}
                   bodyStyle={{ padding: 0 }}
