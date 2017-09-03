@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
   return (
     {
       cards: state.cardsListReducer.cards,
+      loading: state.cardsListReducer.isLoading,
     }
   )
 };
@@ -36,6 +37,7 @@ class CardsList extends React.Component {
       cards,
       onChangePage,
       onChangePageSize,
+      loading
     } = this.props;
 
     return (
@@ -53,7 +55,12 @@ class CardsList extends React.Component {
           {
             cards.map((card) => {
               return <Col span={5} key={card.multiverseid}>
-                <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }} key={card.id}>
+                <Card
+                  style={{ width: 240 }}
+                  bodyStyle={{ padding: 0 }}
+                  key={card.id}
+                  loading={loading}
+                >
                   <div className="custom-image">
                     <img alt={card.name} width="100%" src={card.imageUrl} />
                   </div>
