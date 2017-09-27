@@ -1,6 +1,20 @@
-##ToDo:
- - Show the Cards on the Content Page
- - Make a Pageination for the Cards
+## ToDo:
+- Registration Form (LocalStoreage)
+ -	Username
+	-	Password
+	-	Password Confirmation
+	-	Loading for Submit 
+-	Login Form (LocalStoreage)
+	-	Username
+ -	Password
+	-	Loading for Submit
+-	List all Magic Cards
+ -	Search and Filter Cards (by color, manacosts etc.)
+	-	Dropdown for Colors
+	-	Pagination for the list
  - Make a Pagesize filter. How much Cards are shown at a Page
- - Make Filter  by color, manacost, set
- - Search by name
+-	Functionality to Create Decks
+	-	It is possible to name Decks
+	-	Add Cards to a Deck
+	-	Remove Cards from a Deck
+-	Tree for the Sets and there cards (I’m unsure it is possible)
