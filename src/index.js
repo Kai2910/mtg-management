@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter,
+  Route,
+} from 'react-router-dom'
 import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import { applyMiddleware, createStore } from 'redux';
@@ -11,6 +15,8 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './app';
 import registerServiceWorker from './registerServiceWorker';
+import LoginContainer from './login/login-container';
+import CardsList from './cards-list/cards-list.component';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
@@ -21,9 +27,14 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <LocaleProvider locale={enUS}>
-      <App />
-    </LocaleProvider>
+    <BrowserRouter>
+      <LocaleProvider locale={enUS}>
+        <App>
+          <Route exact path="/" component={LoginContainer} />
+          <Route path="/all-cards" component={CardsList} />
+        </App>
+      </LocaleProvider>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );
