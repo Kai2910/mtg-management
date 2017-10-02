@@ -1,0 +1,5 @@
+const SET_CONFIRM_DIRTY = 'SET_CONFIRM_DIRTY';
+
+export {
+  SET_CONFIRM_DIRTY
+}
