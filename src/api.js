@@ -1,13 +1,13 @@
 import { ajax } from 'rxjs/observable/dom/ajax';
+import axios from 'axios';
 
 const Api = {
-  getCards: (action, keyword = '') => {
-    if (keyword === '') {
-      return ajax.getJSON(`https://api.magicthegathering.io/v1/cards?page=${action.page}&pageSize=${action.pageSize}`)
-    } else {
-      return ajax.getJSON(`https://api.magicthegathering.io/v1/cards?page=${action.page}&pageSize=${action.pageSize}&name=${keyword}`);
-    }
-  },
+  getCards: (params, keyword = '') =>
+    axios.get(`https://api.magicthegathering.io/v1/cards`, {
+      params: params
+    })
+      .then(response =>  response ),
+
 };
 
 export default Api;

@@ -1,4 +1,4 @@
-import 'rxjs';
+import { Observable } from 'rxjs';
 import { combineEpics } from 'redux-observable';
 import {
   fetchCardsFailure,
@@ -15,9 +15,9 @@ import {
 const fetchCardsEpic = action$ =>
   action$.ofType(FETCH_CARDS_REQUEST)
     .mergeMap((action) => {
-      return Api.getCards(action)
+      return Observable.fromPromise(Api.getCards(action.params))
         .map((response) => {
-          return fetchCardsSuccess(response.cards)
+          return fetchCardsSuccess(response.data.cards, response.config.params, response.headers)
         })
         .catch(errors => fetchCardsFailure(errors))
     });
@@ -25,9 +25,9 @@ const fetchCardsEpic = action$ =>
 const searchCardsEpic = action$ =>
   action$.ofType(SEARCH_CARDS_REQUEST)
     .mergeMap((action) => {
-      return getCards(action, action.keyword)
+      return Observable.fromPromise(Api.getCards(action.params))
         .map((response) => {
-          return searchCardsSuccess(response.cards)
+          return searchCardsSuccess(response.data.cards, response.headers, response.config.params)
         })
         .catch(errors => searchCardsFailure)
     });

@@ -7,19 +7,20 @@ import {
   SEARCH_CARDS_SUCCESS,
 } from './types';
 
-const fetchCardsRequest = (page, pageSize) => {
+const fetchCardsRequest = (params) => {
   return ({
     type: FETCH_CARDS_REQUEST,
-    page: page,
-    pageSize: pageSize
+    params,
   });
 };
 
-const fetchCardsSuccess = (cards) => {
+const fetchCardsSuccess = (cards, params, headers) => {
   return (
     {
       type: FETCH_CARDS_SUCCESS,
-      cards: cards
+      cards: cards,
+      totalCount: headers['total-count'],
+      params
     }
   )
 };
@@ -33,17 +34,19 @@ const fetchCardsFailure = (errors) => {
   )
 };
 
-const searchCardsRequest = (keyword) => {
+const searchCardsRequest = (params) => {
   return ({
     type: SEARCH_CARDS_REQUEST,
-    keyword: keyword,
+    params
   })
 };
 
-const searchCardsSuccess = (cards) => {
+const searchCardsSuccess = (cards, headers, params) => {
   return ({
     type: SEARCH_CARDS_SUCCESS,
     searchCardsResult: cards,
+    totalCount: headers['total-count'],
+    params
   })
 };
 
