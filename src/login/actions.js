@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { push } from 'react-router-redux';
 import {
   CREATE_SESSION_FAILURE,
+  CREATE_SESSION_REQUEST,
   CREATE_SESSION_SUCCESS,
   FETCH_USERS
 } from './types';
@@ -28,9 +29,15 @@ const checkUserPermissions = (currentUser, users) => {
 
     return ({
       type: CREATE_SESSION_FAILURE,
-      error: 'Die Anmeldeinformationen sind falsch.'
+      loginError: 'Die Anmeldeinformationen sind falsch.'
     })
   }
+};
+
+const login = () => {
+  return ({
+    type: CREATE_SESSION_REQUEST
+  })
 };
 
 const logout = (dispatch) => {
@@ -42,5 +49,6 @@ const logout = (dispatch) => {
 export {
   checkUserPermissions,
   loadUsers,
+  login,
   logout
 }

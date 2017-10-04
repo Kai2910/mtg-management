@@ -1,14 +1,14 @@
 import {
   FETCH_USERS,
   CREATE_SESSION_FAILURE,
-  CREATE_SESSION_SUCCESS
+  CREATE_SESSION_SUCCESS, CREATE_SESSION_REQUEST
 } from './types';
 
 const initialState = {
   users: [],
   currentUser: {},
   isLoggedIn: false,
-  error: ''
+  loggingIn: false,
 };
 
 function LoginReducer(state = initialState, action) {
@@ -22,12 +22,19 @@ function LoginReducer(state = initialState, action) {
       return ({
         ...state,
         isLoggedIn: false,
-        error: action.error
+        loggingIn: false,
+        loginError: action.loginError
+      });
+    case CREATE_SESSION_REQUEST:
+      return ({
+        ...state,
+        loggingIn: true,
       });
     case CREATE_SESSION_SUCCESS:
       return ({
         ...state,
         isLoggedIn: true,
+        loggingIn: false,
         currentUser: action.user
       });
     default:
