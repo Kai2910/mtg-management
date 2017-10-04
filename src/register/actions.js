@@ -4,13 +4,13 @@ import {
 import { push } from 'react-router-redux';
 
 const createUser = (values, dispatch) => {
-  const user = {
+  const user = [{
     email: values.email,
     nickname: values.nickname,
     password: values.password,
-  };
+  }];
 
-  localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem('users', JSON.stringify(user));
 
   dispatch(push('/'));
 };

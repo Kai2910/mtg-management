@@ -17,7 +17,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './app';
 import registerServiceWorker from './registerServiceWorker';
-import LoginContainer from './login/login-container';
+import Login from './login/index';
 import CardsList from './cards-list/cards-list.component';
 import RegisterContainer from './register/register-containter';
 
@@ -35,7 +35,7 @@ ReactDOM.render(
     <Router history={history}>
       <LocaleProvider locale={enUS}>
         <App>
-          <Route exact path="/" component={LoginContainer} />
+          <Route exact path="/" component={Login} />
           <Route path="/all-cards" component={CardsList} />
           <Route path="/register" component={RegisterContainer} />
         </App>
