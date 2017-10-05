@@ -7,6 +7,9 @@ const Api = {
       params: params
     })
       .then(response =>  response ),
+  getTypes: () =>
+    axios.get('https://api.magicthegathering.io/v1/types')
+      .then(response => response),
 
 };
 

@@ -2,6 +2,9 @@ import {
   FETCH_CARDS_SUCCESS,
   FETCH_CARDS_FAILURE,
   FETCH_CARDS_REQUEST,
+  FETCH_TYPES_FAILURE,
+  FETCH_TYPES_REQUEST,
+  FETCH_TYPES_SUCCESS,
   SEARCH_CARDS_REQUEST,
   SEARCH_CARDS_FAILURE,
   SEARCH_CARDS_SUCCESS,
@@ -34,6 +37,27 @@ const fetchCardsFailure = (errors) => {
   )
 };
 
+const fetchTypesFailure = (error) => {
+  return ({
+    type: FETCH_TYPES_FAILURE,
+    error
+  })
+};
+
+const fetchTypesRequest = () => {
+  return ({
+    type: FETCH_TYPES_REQUEST
+  })
+};
+
+
+const fetchTypesSuccess = (types) => {
+  return ({
+    type: FETCH_TYPES_SUCCESS,
+    types
+  })
+}
+
 const searchCardsRequest = (params) => {
   return ({
     type: SEARCH_CARDS_REQUEST,
@@ -61,6 +85,9 @@ export {
   fetchCardsRequest,
   fetchCardsSuccess,
   fetchCardsFailure,
+  fetchTypesFailure,
+  fetchTypesRequest,
+  fetchTypesSuccess,
   searchCardsRequest,
   searchCardsFailure,
   searchCardsSuccess,

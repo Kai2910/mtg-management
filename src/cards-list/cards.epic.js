@@ -3,12 +3,15 @@ import { combineEpics } from 'redux-observable';
 import {
   fetchCardsFailure,
   fetchCardsSuccess,
+  fetchTypesFailure,
+  fetchTypesSuccess,
   searchCardsFailure,
   searchCardsSuccess,
 } from './actions';
 import Api from '../api';
 import {
   FETCH_CARDS_REQUEST,
+  FETCH_TYPES_REQUEST,
   SEARCH_CARDS_REQUEST
 } from './types';
 
@@ -20,6 +23,16 @@ const fetchCardsEpic = action$ =>
           return fetchCardsSuccess(response.data.cards, response.config.params, response.headers)
         })
         .catch(errors => fetchCardsFailure(errors))
+    });
+
+const fetchTypesEpic = action$ =>
+  action$.ofType(FETCH_TYPES_REQUEST)
+    .mergeMap(() => {
+      return Observable.fromPromise(Api.getTypes())
+        .map((response) => {
+            return fetchTypesSuccess(response.data.types)
+        })
+        .catch(errors => fetchTypesFailure(errors))
     });
 
 const searchCardsEpic = action$ =>
@@ -34,5 +47,6 @@ const searchCardsEpic = action$ =>
 
 export default combineEpics(
   fetchCardsEpic,
+  fetchTypesEpic,
   searchCardsEpic
 )

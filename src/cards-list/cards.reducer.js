@@ -1,7 +1,7 @@
 import {
   FETCH_CARDS_FAILURE,
   FETCH_CARDS_REQUEST,
-  FETCH_CARDS_SUCCESS,
+  FETCH_CARDS_SUCCESS, FETCH_TYPES_FAILURE, FETCH_TYPES_SUCCESS,
   SEARCH_CARDS_FAILURE,
   SEARCH_CARDS_REQUEST,
   SEARCH_CARDS_SUCCESS,
@@ -18,7 +18,8 @@ const initialState = {
     pageSize: 25,
     colors: '',
     name: ''
-  }
+  },
+  types: [],
 };
 
 function CardsListReducer(state = initialState, action) {
@@ -43,6 +44,16 @@ function CardsListReducer(state = initialState, action) {
         errors: action.errors,
         isLoading: false,
       };
+    case FETCH_TYPES_FAILURE:
+      return {
+        ...state,
+        errors: action.error,
+      };
+    case FETCH_TYPES_SUCCESS:
+      return {
+        ...state,
+        types: action.types
+      };
     case SEARCH_CARDS_REQUEST:
       return ({
         ...state,
@@ -51,7 +62,7 @@ function CardsListReducer(state = initialState, action) {
     case SEARCH_CARDS_SUCCESS:
       return ({
         ...state,
-        searchCardsResult: action.searchCardsResult,
+        cards: action.searchCardsResult,
         isLoading: false,
         totalCount: action.totalCount,
         params: action.params
