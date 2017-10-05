@@ -12,6 +12,7 @@
  -	Search and Filter Cards (by color, manacosts etc.)
 	-	Dropdown for Colors
 	-	Pagination for the list
+ - Details about a Card
  - Make a Pagesize filter. How much Cards are shown at a Page
 -	Functionality to Create Decks
 	-	It is possible to name Decks
