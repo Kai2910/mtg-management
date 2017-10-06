@@ -47,7 +47,7 @@ class Login extends React.Component {
     const { loginError: lastLoginError, form } = this.props;
 
     if (loginError !== lastLoginError) {
-      message.error(loginError);
+      message.error(loginError.message);
       form.resetFields(['password']);
       form.getFieldInstance('password').focus();
     }

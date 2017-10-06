@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, Col, Row, Select, Pagination } from 'antd';
+import { Card, Col, Modal, Row, Select, Pagination } from 'antd';
 import _ from 'lodash';
 import SearchField from './search-field/search-field.component';
 import FilterColorField from './componenten/color-filter-field';
 import TypeFilterField from './componenten/type-filter-field';
-import { fetchCardsRequest, fetchTypesRequest, searchCardsRequest } from './actions';
+import DetailModal from './componenten/modal';
+import {
+  fetchCardRequest,
+  fetchCardsRequest,
+  fetchTypesRequest, hideModal,
+  searchCardsRequest,
+  showModal,
+} from './actions';
 
 const Option = Select.Option;
 
@@ -13,12 +20,16 @@ const mapStateToProps = (state) => {
   return (
     {
       cards: state.cardsListReducer.cards,
+      card: state.cardsListReducer.card,
+      cardId: state.cardsListReducer.cardId,
       loading: state.cardsListReducer.isLoading,
+      cardLoading: state.cardsListReducer.isCardLoading,
       params: state.cardsListReducer.params,
       searching: state.cardsListReducer.isSearching,
       searchResult: state.cardsListReducer.searchCardsResult,
       totalCount: state.cardsListReducer.totalCount,
       types: state.cardsListReducer.types,
+      visible: state.cardsListReducer.visible,
     }
   )
 };
@@ -50,12 +61,15 @@ const handleFilterByType = (type, dispatch, currentParams) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     loadCards: (params) => {return (dispatch(fetchCardsRequest(params)));},
+    loadCard: (cardId) => { return (dispatch(fetchCardRequest(cardId))); },
     loadTypes: () => {return (dispatch(fetchTypesRequest()));},
     onChangePage: (params, page, pageSize) => {handleChangePage(params, page, pageSize, dispatch)},
     onChangePageSize: (params, page, pageSize) => {handleChangePage(params, page, pageSize, dispatch)},
     onFilterByColor: (colors, params) => { handleFilterByColor(colors, dispatch, params) },
     onFilterByType: (type, params) => { handleFilterByType(type, dispatch, params)},
-    onSearch: (params, keyword) => { handleSearch(params, dispatch, keyword)}
+    onSearch: (params, keyword) => { handleSearch(params, dispatch, keyword)},
+    onShowModal: (cardId) => { return dispatch(showModal(cardId)); },
+    onHideModal: () => { return dispatch(hideModal()); },
   });
 };
 
@@ -74,16 +88,23 @@ class CardsList extends React.Component {
   render() {
     const {
       cards,
+      card,
+      cardId,
+      cardLoading,
+      loadCard,
       onChangePage,
       onChangePageSize,
       onFilterByColor,
       onFilterByType,
+      onShowModal,
+      onHideModal,
       params,
       loading,
       onSearch,
       searchResult,
       totalCount,
       types,
+      visible,
     } = this.props;
 
     return (
@@ -116,19 +137,20 @@ class CardsList extends React.Component {
         <br />
         <Row>
           {
-              cards.map((card) => {
-                return <Col xs={13} sm={10} md={7} lg={5} xl={4} key={card.multiverseid}>
-                  <Card
-                    style={{ width: 240 }}
-                    bodyStyle={{ padding: 0 }}
-                    key={card.id}
-                    loading={loading}
-                  >
-                    <div className="custom-image">
-                      <img alt={card.name} width="100%" src={card.imageUrl} />
-                    </div>
-                  </Card>
-                </Col>
+            cards.map((card) => {
+              return (<Col xs={13} sm={10} md={7} lg={5} xl={4} key={card.multiverseid}>
+                <Card
+                  style={{ width: 240 }}
+                  bodyStyle={{ padding: 0 }}
+                  key={card.id}
+                  loading={loading}
+                  onClick={() => onShowModal(card.multiverseid)}
+                >
+                  <div className="custom-image">
+                    <img alt={card.name} width="100%" src={card.imageUrl} />
+                  </div>
+                </Card>
+              </Col>);
             })
           }
         </Row>
@@ -145,6 +167,14 @@ class CardsList extends React.Component {
             />
           </Col>
         </Row>
+        <DetailModal
+          cardId={cardId}
+          card={card}
+          visible={visible}
+          onHideModal={onHideModal}
+          loadCard={loadCard}
+          loading={cardLoading}
+        />
       </div>
     )
   }

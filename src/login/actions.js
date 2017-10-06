@@ -22,15 +22,15 @@ const checkUserPermissions = (currentUser, users) => {
 
     return ({
       type: CREATE_SESSION_SUCCESS,
-      currentUser: user
+      currentUser: user,
     });
   } else {
     localStorage.setItem('isLoggedIn', false);
 
     return ({
       type: CREATE_SESSION_FAILURE,
-      loginError: 'Die Anmeldeinformationen sind falsch.'
-    })
+      loginError: { message: 'Die Anmeldeinformationen sind falsch.' },
+    });
   }
 };
 
