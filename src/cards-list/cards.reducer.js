@@ -28,7 +28,7 @@ const initialState = {
     pageSize: 25,
     colors: '',
     name: '',
-    contains: 'multiverseid'
+    contains: 'multiverseid',
   },
   types: [],
   visible: false,
@@ -47,7 +47,7 @@ function CardsListReducer(state = initialState, action) {
         cards: action.cards,
         isLoading: false,
         totalCount: action.totalCount,
-        params: action.params
+        params: action.params,
       };
 
     case FETCH_CARDS_FAILURE:
@@ -85,7 +85,7 @@ function CardsListReducer(state = initialState, action) {
     case FETCH_TYPES_SUCCESS:
       return {
         ...state,
-        types: action.types
+        types: action.types,
       };
     case SEARCH_CARDS_REQUEST:
       return ({
@@ -98,7 +98,7 @@ function CardsListReducer(state = initialState, action) {
         cards: action.searchCardsResult,
         isLoading: false,
         totalCount: action.totalCount,
-        params: action.params
+        params: action.params,
       });
     case SEARCH_CARDS_FAILURE:
       return ({
@@ -118,7 +118,7 @@ function CardsListReducer(state = initialState, action) {
         visible: false,
       });
     default:
-      return state
+      return state;
   }
 }
 

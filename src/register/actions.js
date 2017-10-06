@@ -1,7 +1,7 @@
-import {
-  SET_CONFIRM_DIRTY
-} from './types';
 import { push } from 'react-router-redux';
+import {
+  SET_CONFIRM_DIRTY,
+} from './types';
 
 const createUser = (values, dispatch) => {
   const user = [{
@@ -15,14 +15,12 @@ const createUser = (values, dispatch) => {
   dispatch(push('/'));
 };
 
-const setConfirmDirty = (confirmDirty) => {
-  return ({
-    type: SET_CONFIRM_DIRTY,
-    confirmDirty
-  });
-};
+const setConfirmDirty = confirmDirty => ({
+  type: SET_CONFIRM_DIRTY,
+  confirmDirty,
+});
 
 export {
   createUser,
-  setConfirmDirty
-}
+  setConfirmDirty,
+};

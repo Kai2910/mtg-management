@@ -15,7 +15,7 @@ const handleSubmit = (event, form, createUser) => {
 const handleConfirmBlur = (event, confirmDirtySet) => {
   const value = event.target.value;
 
-  if (!!value) {
+  if (value) {
     confirmDirtySet(true);
   }
 };
@@ -36,7 +36,7 @@ const checkPassword = (rule, value, callback, form) => {
 };
 
 const RegisterForm = ({ form, confirmDirtySet, confirmDirty, createUser }) => (
-  <Form onSubmit={(event) => handleSubmit(event, form, createUser)}>
+  <Form onSubmit={event => handleSubmit(event, form, createUser)}>
     <FormItem
       label="E-mail"
     >
@@ -47,7 +47,7 @@ const RegisterForm = ({ form, confirmDirtySet, confirmDirty, createUser }) => (
           required: true, message: 'Please input your E-mail!',
         }],
       })(
-        <Input />
+        <Input />,
       )}
     </FormItem>
     <FormItem
@@ -57,10 +57,12 @@ const RegisterForm = ({ form, confirmDirtySet, confirmDirty, createUser }) => (
         rules: [{
           required: true, message: 'Please input your password!',
         }, {
-          validator: (rule, value, callback) => {checkConfirm(rule, value, callback, form, confirmDirty)},
+          validator: (rule, value, callback) => {
+            checkConfirm(rule, value, callback, form, confirmDirty);
+          },
         }],
       })(
-        <Input type="password" />
+        <Input type="password" />,
       )}
     </FormItem>
     <FormItem
@@ -70,10 +72,10 @@ const RegisterForm = ({ form, confirmDirtySet, confirmDirty, createUser }) => (
         rules: [{
           required: true, message: 'Please confirm your password!',
         }, {
-          validator: (rule, value, callback) => {checkPassword(rule, value, callback, form)},
+          validator: (rule, value, callback) => { checkPassword(rule, value, callback, form); },
         }],
       })(
-        <Input type="password" onBlur={(event) => handleConfirmBlur(event, confirmDirtySet)} />
+        <Input type="password" onBlur={event => handleConfirmBlur(event, confirmDirtySet)} />,
       )}
     </FormItem>
     <FormItem
@@ -81,15 +83,15 @@ const RegisterForm = ({ form, confirmDirtySet, confirmDirty, createUser }) => (
         <span>
               Nickname&nbsp;
           <Tooltip title="What do you want other to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
+            <Icon type="question-circle-o" />
+          </Tooltip>
+        </span>
       )}
     >
       {form.getFieldDecorator('nickname', {
         rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
       })(
-        <Input />
+        <Input />,
       )}
     </FormItem>
     <FormItem>

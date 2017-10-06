@@ -1,10 +1,8 @@
-import {
-  SET_CONFIRM_DIRTY
-} from './types';
+import SET_CONFIRM_DIRTY from './types';
 
 const initialState = {
   autoCompleteResult: [],
-  confirmDirty:false,
+  confirmDirty: false,
 };
 
 function RegisterReducer(state = initialState, action) {
@@ -15,7 +13,7 @@ function RegisterReducer(state = initialState, action) {
         confirmDirty: action.confirmDirty,
       };
     default:
-      return state
+      return state;
   }
 }
 

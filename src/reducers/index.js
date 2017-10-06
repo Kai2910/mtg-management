@@ -9,6 +9,6 @@ export default combineReducers(
     cardsListReducer,
     loginReducer,
     registerReducer,
-    routerReducer
-  }
+    routerReducer,
+  },
 );

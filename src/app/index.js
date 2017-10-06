@@ -1,8 +1,8 @@
 import React from 'react';
-import SideBar from '../menu/sidebar/sidebar.component';
 import { Layout } from 'antd';
-import '../App.css';
 import 'antd/dist/antd.css';
+import SideBar from '../menu/sidebar/sidebar.component';
+import '../App.css';
 
 const { Content } = Layout;
 
@@ -22,36 +22,3 @@ export default function App({ children }) {
     </div>
   );
 }
-
-
-// class App extends React.Component {
-//   componentWillMount() {
-//     this.props.onLoad();
-//   }
-//
-//   render() {
-//     const {
-//       currentUser,
-//       permissions,
-//       appName,
-//       onLogout,
-//       accessToken,
-//       client,
-//     } = this.props;
-//
-//     return (currentUser && permissions ? <TopAndSideNav
-//       appName={appName}
-//       currentUser={currentUser}
-//       permissions={permissions}
-//       logout={onLogout}
-//       accessToken={accessToken}
-//       client={client}
-//     >
-//       {this.props.children}
-//     </TopAndSideNav> : <Login />);
-//   }
-// }
-//
-// App.contextTypes = {
-//   router: PropTypes.object.isRequired,
-// };

@@ -15,110 +15,82 @@ import {
   SEARCH_CARDS_SUCCESS,
 } from './types';
 
-const fetchCardsRequest = (params) => {
-  return ({
-    type: FETCH_CARDS_REQUEST,
-    params,
-  });
-};
+const fetchCardsRequest = params => ({
+  type: FETCH_CARDS_REQUEST,
+  params,
+});
 
-const fetchCardsSuccess = (cards, params, headers) => {
-  return (
-    {
-      type: FETCH_CARDS_SUCCESS,
-      cards,
-      totalCount: headers['total-count'],
-      params,
-    }
-  );
-};
-
-const fetchCardsFailure = (errors) => {
-  return (
-    {
-      type: FETCH_CARDS_FAILURE,
-      errors: errors,
-    }
-  );
-};
-
-const fetchCardFailure = (error) => {
-  return ({
-    type: FETCH_CARD_FAILURE,
-    error,
-  });
-};
-
-const fetchCardRequest = (cardId) => {
-  return ({
-    type: FETCH_CARD_REQUEST,
-    cardId,
-  });
-};
-
-const fetchCardSuccess = (card) => {
-  return ({
-    type: FETCH_CARD_SUCCESS,
-    card,
-  });
-};
-
-const fetchTypesFailure = (error) => {
-  return ({
-    type: FETCH_TYPES_FAILURE,
-    error,
-  });
-};
-
-const fetchTypesRequest = () => {
-  return ({
-    type: FETCH_TYPES_REQUEST
-  })
-};
-
-
-const fetchTypesSuccess = (types) => {
-  return ({
-    type: FETCH_TYPES_SUCCESS,
-    types
-  })
-}
-
-const searchCardsRequest = (params) => {
-  return ({
-    type: SEARCH_CARDS_REQUEST,
-    params
-  })
-};
-
-const searchCardsSuccess = (cards, headers, params) => {
-  return ({
-    type: SEARCH_CARDS_SUCCESS,
-    searchCardsResult: cards,
+const fetchCardsSuccess = (cards, params, headers) => (
+  {
+    type: FETCH_CARDS_SUCCESS,
+    cards,
     totalCount: headers['total-count'],
-    params
-  })
-};
+    params,
+  }
+);
 
-const searchCardsFailure = (errors) => {
-  return ({
-    type: SEARCH_CARDS_FAILURE,
-    errors: errors,
-  });
-};
+const fetchCardsFailure = errors => (
+  {
+    type: FETCH_CARDS_FAILURE,
+    errors,
+  }
+);
 
-const showModal = (cardId) => {
-  return ({
-    type: MODAL_SHOW,
-    cardId,
-  });
-};
+const fetchCardFailure = error => ({
+  type: FETCH_CARD_FAILURE,
+  error,
+});
 
-const hideModal = () => {
-  return ({
-    type: MODAL_HIDE,
-  });
-};
+const fetchCardRequest = cardId => ({
+  type: FETCH_CARD_REQUEST,
+  cardId,
+});
+
+const fetchCardSuccess = card => ({
+  type: FETCH_CARD_SUCCESS,
+  card,
+});
+
+const fetchTypesFailure = error => ({
+  type: FETCH_TYPES_FAILURE,
+  error,
+});
+
+const fetchTypesRequest = () => ({
+  type: FETCH_TYPES_REQUEST,
+});
+
+
+const fetchTypesSuccess = types => ({
+  type: FETCH_TYPES_SUCCESS,
+  types,
+});
+
+const searchCardsRequest = params => ({
+  type: SEARCH_CARDS_REQUEST,
+  params,
+});
+
+const searchCardsSuccess = (cards, headers, params) => ({
+  type: SEARCH_CARDS_SUCCESS,
+  searchCardsResult: cards,
+  totalCount: headers['total-count'],
+  params,
+});
+
+const searchCardsFailure = errors => ({
+  type: SEARCH_CARDS_FAILURE,
+  errors,
+});
+
+const showModal = cardId => ({
+  type: MODAL_SHOW,
+  cardId,
+});
+
+const hideModal = () => ({
+  type: MODAL_HIDE,
+});
 
 export {
   fetchCardsRequest,
