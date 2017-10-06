@@ -1,7 +1,5 @@
 import { push } from 'react-router-redux';
-import {
-  SET_CONFIRM_DIRTY,
-} from './types';
+import SET_CONFIRM_DIRTY from './types';
 
 const createUser = (values, dispatch) => {
   const user = [{

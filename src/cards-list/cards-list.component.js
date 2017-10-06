@@ -18,7 +18,7 @@ const Option = Select.Option;
 const mapStateToProps = state => (
   {
     cards: state.cardsListReducer.cards,
-    card: state.cardsListReducer.card,
+    singleCard: state.cardsListReducer.card,
     cardId: state.cardsListReducer.cardId,
     loading: state.cardsListReducer.isLoading,
     cardLoading: state.cardsListReducer.isCardLoading,
