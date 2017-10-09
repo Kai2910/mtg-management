@@ -10,6 +10,9 @@ const FormItem = Form.Item;
 
 const mapStateToProps = state => ({
   users: state.loginReducer.users,
+  // what?
+  // 1. Why do you need to look for the size?
+  // 2. If it is not stored, you should just have set it up to false... :/ Because your app is not working :)
   isLoggedIn: _.size(state.loginReducer.isLoggedIn) > 0 ? state.loginReducer.isLoggedIn : JSON.parse(localStorage.getItem('isLoggedIn')),
   loginError: state.loginReducer.loginError,
   loggingIn: state.loginReducer.loggingIn,
@@ -39,6 +42,7 @@ class Login extends React.Component {
     onLoadUsers();
   }
 
+  // Taken from the Carento project?
   componentWillReceiveProps({ loginError }) {
     const { loginError: lastLoginError, form } = this.props;
 

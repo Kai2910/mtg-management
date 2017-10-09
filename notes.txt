@@ -1,0 +1,26 @@
+# Code review #1
+
+## Architecture
+* Why is everything at the root of the `src/` file?
+* Would it not make sense to separate and sort the files according to their functionality? i.e. `modules/` and `pages/`?
+* Where `modules` would contain the modules/components/widgets and `pages/` would contains the `pages` that would be responsible for the module calls.
+* You are miss-using the `index.js` (i.e. in `login/`). `index.js` is not there to put in the component, but to regroup all components, actions, reducers, ... that you want to provide to other components/files.
+* `cards-list/componenten`? WHAAAAT?! Are you kidding me?! When you code, code in English. Any other language is prohibited, whenever it is French, German, Russian, or anything else. All code MUST be written in english. It also concerns the default error messages, files, folders, ...
+
+## Readme:
+* What is the progress status? Why not use checkboxes?
+
+## Cards-list
+* Does it not make sense to put the `modal` as a `Card/Card.jsx` Component, that you then display as a Modal?
+* You put the image inside a `Card`, which therefore make it bordered. Why not simply use a `Row>Col` instead? I do not see the interest of using a `Card` AntComponent here.
+* We can not differenciate the title of a point from its Value. Also, I do not see the point of using `{`Converted Mana Cost: ${card.cmc}`}` instead of `Converted Mana Cost: {card.cmc}`.
+You could then do something like: `<strong>Converted Mana Cost:</strong> {card.cmc}`, for example.
+* I do not see the point of the spaces between each fitlers (top of the lists). Also, when I collapse, they go under one another instead of just collapsing.
+* Your CardsList is a `page`, not a `component`. You created small components for the header. You could have then regroup them in a container that you would then use on your page, for example. Same for the display of your cards + pagination: I am convinced they could be put in a single component aswell.
+You put everything in this 'all-in-one' component. Including for example `loadCard`, that would have more its place in the `Card` component.
+
+## Msg:
+* Why are (errors) messages in german? :( Everything else is in English...
+
+## Template
+* You lack a general template. For example, your Login Form takes all the width of the page, instead of being put inside of a box/card/row-col

@@ -3,6 +3,17 @@ import { Select } from 'antd';
 
 const Option = Select.Option;
 
+// It makes a lot more sense to map through a list
+// const COLORS = [
+//   'Black',
+//   'Blue',
+//   // ...
+// ]
+//
+// COLORS.map(c => (<Option key={c}>{c}</Option>))
+//
+// than to do it like you did... :/
+
 const FilterColorsField = ({ onFilterByColor, params }) => (
   <Select
     mode="multiple"

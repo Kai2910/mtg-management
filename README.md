@@ -3,7 +3,7 @@
 - [x] Username
 	- [x] Password
 	- [x] Password Confirmation
-	- [x] Loading for Submit 
+	- [x] Loading for Submit
 - [x] Login Form (LocalStoreage)
 	- [x] Username
 	- [x] Password
