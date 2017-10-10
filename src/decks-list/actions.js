@@ -19,13 +19,11 @@ const fetchDecks = () => ({
   decks: _.isEmpty(localStorage.getItem('decks')) ? [] : JSON.parse(localStorage.getItem('decks')),
 });
 
-const setSelectedRowKeys = (selectedRowKeys, selectedRows) => {
-  return ({
-    type: SET_SELECTED_ROW_KEYS,
-    selectedRowKeys,
-    selectedRows,
-  });
-};
+const setSelectedRowKeys = (selectedRowKeys, selectedRows) => ({
+  type: SET_SELECTED_ROW_KEYS,
+  selectedRowKeys,
+  selectedRows,
+});
 
 const removeDeck = (selectedDecks) => {
   const decks = JSON.parse(localStorage.decks);
@@ -49,4 +47,4 @@ export {
   fetchDecks,
   removeDeck,
   setSelectedRowKeys,
-}
+};

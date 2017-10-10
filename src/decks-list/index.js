@@ -5,22 +5,18 @@ import { push } from 'react-router-redux';
 import DecksTable from './componenten/table';
 import { fetchDecks, removeDeck, setSelectedRowKeys } from '../decks-list/actions';
 
-const mapDispatchToProps = (dispatch) => {
-  return ({
-    onRemoveDeck: (selectedDecks, selectedRowKeys) => { return (dispatch(removeDeck(selectedDecks, selectedRowKeys))); },
-    onLoadDecks: () => { return (dispatch(fetchDecks())); },
-    onNewDeck: () => { return (dispatch(push('/new-deck'))); },
-    onSelectChange: (selectedRowKeys, selectedRows) => { return (dispatch(setSelectedRowKeys(selectedRowKeys, selectedRows))); },
-  });
-};
+const mapDispatchToProps = dispatch => ({
+  onRemoveDeck: (selectedDecks, selectedRowKeys) => (dispatch(removeDeck(selectedDecks, selectedRowKeys))),
+  onLoadDecks: () => (dispatch(fetchDecks())),
+  onNewDeck: () => (dispatch(push('/new-deck'))),
+  onSelectChange: (selectedRowKeys, selectedRows) => (dispatch(setSelectedRowKeys(selectedRowKeys, selectedRows))),
+});
 
-const mapStateToProps = (state) => {
-  return ({
-    decks: state.decksReducer.decks,
-    selectedRowKeys: state.decksReducer.selectedRowKeys,
-    selectedRows: state.decksReducer.selectedRows,
-  });
-};
+const mapStateToProps = state => ({
+  decks: state.decksReducer.decks,
+  selectedRowKeys: state.decksReducer.selectedRowKeys,
+  selectedRows: state.decksReducer.selectedRows,
+});
 
 const COLUMNS = [
   {

@@ -21,16 +21,14 @@ const handleSubmit = (event, form) => {
   });
 };
 
-const NewDeckContainer = ({ onRedirect }) => {
-  return (
-    <div>
-      <h2>New Deck</h2>
-      <NewDeckForm
-        handleSubmit={handleSubmit}
-        onRedirect={onRedirect}
-      />
-    </div>
-  );
-};
+const NewDeckContainer = ({ onRedirect }) => (
+  <div>
+    <h2>New Deck</h2>
+    <NewDeckForm
+      handleSubmit={handleSubmit}
+      onRedirect={onRedirect}
+    />
+  </div>
+);
 
 export default connect(null, mapDispatchToProps)(NewDeckContainer);

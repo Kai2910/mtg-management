@@ -15,19 +15,15 @@ const parseManaCosts = (manaCosts) => {
   return found;
 };
 
-const menu = (card, currentDecks, onAddCard) => {
-  return (
-    <Menu onClick={deck => onAddCard(card, Number(deck.key))}>
-      {
-        currentDecks.map((deck) => {
-          return (<Menu.Item key={deck.id}>
-            {deck.deckName}
-          </Menu.Item>);
-        })
-      }
-    </Menu>
-  );
-};
+const menu = (card, currentDecks, onAddCard) => (
+  <Menu onClick={deck => onAddCard(card, Number(deck.key))}>
+    {
+      currentDecks.map(deck => (<Menu.Item key={deck.id}>
+        {deck.deckName}
+      </Menu.Item>))
+    }
+  </Menu>
+);
 
 class DetailModal extends React.Component {
   componentDidUpdate(prevProps) {
@@ -65,7 +61,12 @@ class DetailModal extends React.Component {
             <Card bordered={false} style={{ width: 240 }} noHovering loading={loading}>
               <p>{`Card Name: ${card.name}`}</p>
               <p>{'Mana Cost: '}{
-                parseManaCosts(card.manaCost).map(cost => <img alt="Nothing" src={`http://gatherer.wizards.com/Handlers/Image.ashx?size=medium&name=${cost}&type=symbol`} />)
+                parseManaCosts(card.manaCost).map(cost =>
+                  (<img
+                    alt="Nothing"
+                    src={`http://gatherer.wizards.com/Handlers/Image.ashx?size=medium&name=${cost}&type=symbol`}
+                  />),
+                )
               }</p>
               <p>{`Converted Mana Cost: ${card.cmc}`}</p>
               <p>{`Types: ${card.types}`}</p>

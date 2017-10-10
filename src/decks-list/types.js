@@ -6,4 +6,4 @@ export {
   DELETE_DECK_SUCCESS,
   FETCH_DECKS,
   SET_SELECTED_ROW_KEYS,
-}
+};

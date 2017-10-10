@@ -1,7 +1,15 @@
 import React from 'react';
 import { Table, Button } from 'antd';
 
-const DecksTable = ({ columns, data, onDelete, onSelectChange, selectedRowKeys, selectedRows, loading }) => {
+const DecksTable = ({
+  columns,
+  data,
+  onDelete,
+  onSelectChange,
+  selectedRowKeys,
+  selectedRows,
+  loading,
+}) => {
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
