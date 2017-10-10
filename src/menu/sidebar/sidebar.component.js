@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import { logout } from '../../login/actions';
 
@@ -27,16 +28,21 @@ const Sidebar = ({ isLoggedIn, onLogout }) => (
             item.key === '2' ? onLogout() : false
           )}
         >
-          {
-            isLoggedIn &&
-            <Menu.Item key="2">
-              <Icon type="logout" />
-              <span>Logout</span>
-            </Menu.Item>
-          }
+          <Menu.Item key="2">
+            <Icon type="logout" />
+            <span>Logout</span>
+          </Menu.Item>
           <Menu.Item key="1">
-            <Icon type="pie-chart" />
-            <span>Alle Karten</span>
+            <Link to="/all-cards">
+              <Icon type="pie-chart" />
+              <span>Alle Karten</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="3">
+            <Link to="/decks">
+              <Icon type="edit" />
+              <span>Decks</span>
+            </Link>
           </Menu.Item>
         </Menu>
       </Sider>
