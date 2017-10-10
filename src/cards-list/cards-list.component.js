@@ -8,12 +8,16 @@ import FilterColorField from './componenten/color-filter-field';
 import TypeFilterField from './componenten/type-filter-field';
 import DetailModal from './componenten/modal';
 import {
+  addCardToDeck,
   fetchCardRequest,
   fetchCardsRequest,
   fetchTypesRequest, hideModal,
   searchCardsRequest,
   showModal,
 } from './actions';
+import {
+  fetchDecks,
+} from '../decks-list/actions';
 
 const Option = Select.Option;
 
@@ -22,6 +26,7 @@ const mapStateToProps = state => (
     cards: state.cardsListReducer.cards,
     cardId: state.cardsListReducer.cardId,
     cardLoading: state.cardsListReducer.isCardLoading,
+    decks: state.decksReducer.decks,
     isLoggedIn: _.size(state.loginReducer.isLoggedIn) > 0 ? state.loginReducer.isLoggedIn : JSON.parse(localStorage.getItem('isLoggedIn')),
     loading: state.cardsListReducer.isLoading,
     params: state.cardsListReducer.params,
@@ -33,6 +38,11 @@ const mapStateToProps = state => (
     visible: state.cardsListReducer.visible,
   }
 );
+
+const handleAddCardToDeck = (card, deckIndex, dispatch) => {
+  dispatch(addCardToDeck(card, deckIndex));
+  message.success('Card added successfully.');
+};
 
 const handleFilterByColor = (colors, dispatch, currentParams) => {
   const params = { ...currentParams, colors: colors.join(',') };
@@ -66,7 +76,9 @@ const handleRedirect = (errorMessage, path, dispatch) => {
 const mapDispatchToProps = dispatch => ({
   loadCards: params => (dispatch(fetchCardsRequest(params))),
   loadCard: cardId => (dispatch(fetchCardRequest(cardId))),
+  loadDecks: () => (dispatch(fetchDecks())),
   loadTypes: () => (dispatch(fetchTypesRequest())),
+  onAddCard: (card, deckIndex) => { handleAddCardToDeck(card, deckIndex, dispatch); },
   onChangePage: (params, page, pageSize) => { handleChangePage(params, page, pageSize, dispatch); },
   onChangePageSize: (params, page, pageSize) => {
     handleChangePage(params, page, pageSize, dispatch);
@@ -83,11 +95,13 @@ class CardsList extends React.Component {
   componentWillMount() {
     const {
       loadCards,
+      loadDecks,
       loadTypes,
       params,
     } = this.props;
 
     loadCards(params);
+    loadDecks();
     loadTypes();
   }
 
@@ -97,8 +111,10 @@ class CardsList extends React.Component {
       singleCard,
       cardId,
       cardLoading,
+      decks,
       isLoggedIn,
       loadCard,
+      onAddCard,
       onChangePage,
       onChangePageSize,
       onFilterByColor,
@@ -119,19 +135,19 @@ class CardsList extends React.Component {
         { isLoggedIn ?
           <div>
             <Row>
-              <Col span={6}>
+              <Col xs={13} sm={8} md={7} lg={5} xl={4}>
                 <SearchField
                   onSearchCards={onSearch}
                   params={params}
                 />
               </Col>
-              <Col span={6}>
+              <Col xs={13} sm={8} md={7} lg={5} xl={4}>
                 <FilterColorField
                   onFilterByColor={onFilterByColor}
                   params={params}
                 />
               </Col>
-              <Col span={6}>
+              <Col xs={13} sm={8} md={7} lg={5} xl={4}>
                 <TypeFilterField
                   onFilterByType={onFilterByType}
                   params={params}
@@ -153,6 +169,7 @@ class CardsList extends React.Component {
                       key={card.id}
                       loading={loading}
                       onClick={() => onShowModal(card.multiverseid)}
+                      bordered={false}
                     >
                       <div className="custom-image">
                         <img alt={card.name} width="100%" src={card.imageUrl} />
@@ -178,7 +195,9 @@ class CardsList extends React.Component {
             <DetailModal
               cardId={cardId}
               card={singleCard}
+              decks={decks}
               visible={visible}
+              onAddCard={onAddCard}
               onHideModal={onHideModal}
               loadCard={loadCard}
               loading={cardLoading}

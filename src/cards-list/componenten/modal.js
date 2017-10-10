@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Row, Modal } from 'antd';
+import { Button, Card, Dropdown, Col, Icon, Menu, Row, Modal } from 'antd';
 
 const parseManaCosts = (manaCosts) => {
   const found = [];
@@ -15,6 +15,20 @@ const parseManaCosts = (manaCosts) => {
   return found;
 };
 
+const menu = (card, currentDecks, onAddCard) => {
+  return (
+    <Menu onClick={deck => onAddCard(card, Number(deck.key))}>
+      {
+        currentDecks.map((deck) => {
+          return (<Menu.Item key={deck.id}>
+            {deck.deckName}
+          </Menu.Item>);
+        })
+      }
+    </Menu>
+  );
+};
+
 class DetailModal extends React.Component {
   componentDidUpdate(prevProps) {
     const { cardId, loadCard, visible } = this.props;
@@ -24,7 +38,8 @@ class DetailModal extends React.Component {
   }
 
   render() {
-    const { card, visible, loading, onHideModal } = this.props;
+    const { card, decks, visible, loading, onHideModal, onAddCard } = this.props;
+
     return (
       <Modal
         title={card.name}
@@ -39,6 +54,7 @@ class DetailModal extends React.Component {
               bodyStyle={{ padding: 0 }}
               key={card.id}
               loading={loading}
+              bordered={false}
             >
               <div className="custom-image">
                 <img alt={card.name} width="100%" src={card.imageUrl} />
@@ -59,6 +75,11 @@ class DetailModal extends React.Component {
               <p>{`Rarity: ${card.rarity}`}</p>
               <p>{`Card Number: ${card.number}`}</p>
               <p>{`Artist: ${card.artist}`}</p>
+              <p>
+                <Dropdown overlay={menu(card, decks, onAddCard)}>
+                  <Button type="primary"><Icon type="plus" /> Add To</Button>
+                </Dropdown>
+              </p>
             </Card>
           </Col>
         </Row>
