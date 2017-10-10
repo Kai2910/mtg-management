@@ -1,21 +1,25 @@
 ## ToDo:
-- Registration Form (LocalStoreage)
- -	Username
-	-	Password
-	-	Password Confirmation
-	-	Loading for Submit 
--	Login Form (LocalStoreage)
-	-	Username
- -	Password
-	-	Loading for Submit
--	List all Magic Cards
- -	Search and Filter Cards (by color, manacosts etc.)
-	-	Dropdown for Colors
-	-	Pagination for the list
- - Details about a Card
- - Make a Pagesize filter. How much Cards are shown at a Page
--	Functionality to Create Decks
-	-	It is possible to name Decks
-	-	Add Cards to a Deck
-	-	Remove Cards from a Deck
--	Tree for the Sets and there cards (I’m unsure it is possible)
+- [x] Registration Form (LocalStoreage)
+- [x] Username
+	- [x] Password
+	- [x] Password Confirmation
+	- [x] Loading for Submit 
+- [x] Login Form (LocalStoreage)
+	- [x] Username
+	- [x] Password
+	- [x] Loading for Submit
+- [x] List all Magic Cards
+	- [x] Search and Filter Cards (by color, manacosts etc.)
+		- [x] Dropdown for Colors
+		- [x] Pagination for the list
+ 	- [x] Make a Pagesize filter. How much Cards are shown at a Page
+- [x] Functionality to Create Decks
+	- [x] It is possible to name Decks
+	- [x] Add Cards to a Deck
+	- [x] Remove Deck
+	- [x] Add description for a Deck
+- [ ] Functionality to edit Decks
+	- [ ] Remove Cards from a Deck
+	- [ ] Rename the Deck
+	- [ ] Edit the description
+- [ ] Tree for the Sets and there cards (I’m unsure it is possible)
