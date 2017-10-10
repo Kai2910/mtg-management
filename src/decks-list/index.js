@@ -12,7 +12,7 @@ import {
 } from '../decks-list/actions';
 
 const mapDispatchToProps = dispatch => ({
-  onEditDeck: () => (console.log('Edit Deck')),
+  onEditDeck: () => (dispatch(push('/edit-deck'))),
   onRemoveDeck: deckId => (dispatch(removeDeck(deckId))),
   onRemoveDecks: selectedDecks => (dispatch(removeDecks(selectedDecks))),
   onLoadDecks: () => (dispatch(fetchDecks())),

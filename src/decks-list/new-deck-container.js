@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { createDeck } from './actions';
-import NewDeckForm from './componenten/new-deck-form';
+import NewDeckForm from './componenten/deck-form';
 
 const mapDispatchToProps = dispatch => ({
   onRedirect: () => (dispatch(push('/decks'))),

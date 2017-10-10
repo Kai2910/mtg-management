@@ -20,6 +20,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Login from './login/index';
 import CardsList from './cards-list/cards-list.component';
 import DecksContainer from './decks-list/index';
+import EditDeckContainer from './decks-list/edit-deck-container';
 import NewDeckContainer from './decks-list/new-deck-container';
 import RegisterContainer from './register/register-containter';
 
@@ -42,6 +43,7 @@ ReactDOM.render(
           <Route path="/register" component={RegisterContainer} />
           <Route path="/decks" component={DecksContainer} />
           <Route path="/new-deck" component={NewDeckContainer} />
+          <Route path="/edit-deck" component={EditDeckContainer} />
         </App>
       </LocaleProvider>
     </Router>
