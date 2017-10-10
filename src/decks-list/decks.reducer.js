@@ -1,5 +1,6 @@
 import {
   DELETE_DECK_SUCCESS,
+  DELETE_DECKS_SUCCESS,
   FETCH_DECKS,
   SET_SELECTED_ROW_KEYS,
 } from './types';
@@ -13,6 +14,11 @@ const initialState = {
 function decksReducer(state = initialState, action) {
   switch (action.type) {
     case DELETE_DECK_SUCCESS:
+      return {
+        ...state,
+        decks: action.decks,
+      };
+    case DELETE_DECKS_SUCCESS:
       return {
         ...state,
         decks: action.decks,

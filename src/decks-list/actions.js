@@ -2,6 +2,7 @@ import { message } from 'antd';
 import _ from 'lodash';
 import {
   DELETE_DECK_SUCCESS,
+  DELETE_DECKS_SUCCESS,
   FETCH_DECKS,
   SET_SELECTED_ROW_KEYS,
 } from './types';
@@ -25,7 +26,7 @@ const setSelectedRowKeys = (selectedRowKeys, selectedRows) => ({
   selectedRows,
 });
 
-const removeDeck = (selectedDecks) => {
+const removeDecks = (selectedDecks) => {
   const decks = JSON.parse(localStorage.decks);
 
   selectedDecks.map((selectedDeck) => {
@@ -36,9 +37,24 @@ const removeDeck = (selectedDecks) => {
   message.success('Die ausgewählten Decks wurden erfolgreich gelöscht.');
 
   return ({
-    type: DELETE_DECK_SUCCESS,
+    type: DELETE_DECKS_SUCCESS,
     decks,
     selectedRowKeys: [],
+  });
+};
+
+const removeDeck = (deckId) => {
+  const decks = JSON.parse(localStorage.decks);
+
+  _.remove(decks, d => d.id === deckId);
+
+  message.success('Das ausgewählte Deck wurde erfolgreich gelöscht.');
+
+  localStorage.setItem('decks', JSON.stringify(decks));
+
+  return ({
+    type: DELETE_DECK_SUCCESS,
+    decks,
   });
 };
 
@@ -46,5 +62,6 @@ export {
   createDeck,
   fetchDecks,
   removeDeck,
+  removeDecks,
   setSelectedRowKeys,
 };

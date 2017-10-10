@@ -1,10 +1,15 @@
 import React from 'react';
-import { Table, Button } from 'antd';
+import { Button, Modal } from 'antd';
+import DataTable from '../../components/DataTable/DataTable';
+import DropOption from '../../components/DropOption/DropOption';
+
+const confirm = Modal.confirm;
 
 const DecksTable = ({
-  columns,
-  data,
-  onDelete,
+  decks,
+  onDeleteDeck,
+  onDeleteDecks,
+  onEdit,
   onSelectChange,
   selectedRowKeys,
   selectedRows,
@@ -15,6 +20,41 @@ const DecksTable = ({
     onChange: onSelectChange,
   };
 
+  const handleMenuClick = (deck, e) => {
+    if (e.key === '1') {
+      onEdit();
+    } else if (e.key === '2') {
+      confirm({
+        title: `Möchten Sie "${deck.deckName}" wirklich löschen?`,
+        onOk() {
+          onDeleteDeck(deck.id);
+        },
+      });
+    }
+  };
+
+  const COLUMNS = [
+    {
+      title: 'Name',
+      dataIndex: 'deckName',
+      sorter: (a, b) => a.deckName.length - b.deckName.length,
+    }, {
+      title: 'Aktion',
+      key: 'operation',
+      width: 100,
+      className: 'center',
+      render: (text, record) => (
+        <DropOption
+          onMenuClick={e => handleMenuClick(record, e)}
+          menuOptions={[
+            { key: '1', name: 'Editieren' },
+            { key: '2', name: 'Löschen' },
+          ]}
+        />
+      ),
+    },
+  ];
+
   const hasSelected = selectedRowKeys.length > 0;
 
   return (
@@ -22,7 +62,7 @@ const DecksTable = ({
       <div style={{ marginBottom: 16, marginTop: 16 }}>
         <Button
           type="danger"
-          onClick={() => onDelete(selectedRows, selectedRowKeys)}
+          onClick={() => onDeleteDecks(selectedRows)}
           disabled={!hasSelected}
           loading={loading}
         >
@@ -32,7 +72,7 @@ const DecksTable = ({
           {hasSelected ? `Selected ${selectedRowKeys.length} decks` : ''}
         </span>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+      <DataTable rowSelection={rowSelection} columns={COLUMNS} data={decks} />
     </div>
   );
 };

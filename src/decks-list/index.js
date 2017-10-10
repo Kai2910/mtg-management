@@ -2,11 +2,19 @@ import React from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import DropOption from '../components/DropOption/DropOption';
 import DecksTable from './componenten/table';
-import { fetchDecks, removeDeck, setSelectedRowKeys } from '../decks-list/actions';
+import {
+  fetchDecks,
+  removeDeck,
+  removeDecks,
+  setSelectedRowKeys
+} from '../decks-list/actions';
 
 const mapDispatchToProps = dispatch => ({
-  onRemoveDeck: (selectedDecks, selectedRowKeys) => (dispatch(removeDeck(selectedDecks, selectedRowKeys))),
+  onEditDeck: () => (console.log('Edit Deck')),
+  onRemoveDeck: deckId => (dispatch(removeDeck(deckId))),
+  onRemoveDecks: selectedDecks => (dispatch(removeDecks(selectedDecks))),
   onLoadDecks: () => (dispatch(fetchDecks())),
   onNewDeck: () => (dispatch(push('/new-deck'))),
   onSelectChange: (selectedRowKeys, selectedRows) => (dispatch(setSelectedRowKeys(selectedRowKeys, selectedRows))),
@@ -18,14 +26,6 @@ const mapStateToProps = state => ({
   selectedRows: state.decksReducer.selectedRows,
 });
 
-const COLUMNS = [
-  {
-    title: 'Name',
-    dataIndex: 'deckName',
-    sorter: (a, b) => a.deckName.length - b.deckName.length,
-  },
-];
-
 class DecksContainer extends React.Component {
   componentWillMount() {
     const { onLoadDecks } = this.props;
@@ -35,7 +35,9 @@ class DecksContainer extends React.Component {
   render() {
     const {
       decks,
+      onEditDeck,
       onRemoveDeck,
+      onRemoveDecks,
       onNewDeck,
       onSelectChange,
       selectedRowKeys,
@@ -51,12 +53,13 @@ class DecksContainer extends React.Component {
           New Deck
         </Button>
         <DecksTable
-          columns={COLUMNS}
-          data={decks}
+          decks={decks}
           onSelectChange={onSelectChange}
           selectedRowKeys={selectedRowKeys}
           selectedRows={selectedRows}
-          onDelete={onRemoveDeck}
+          onDeleteDeck={onRemoveDeck}
+          onDeleteDecks={onRemoveDecks}
+          onEdit={onEditDeck}
         />
       </div>
     );
