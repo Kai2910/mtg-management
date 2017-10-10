@@ -4,9 +4,9 @@ import { Card, Col, message, Row, Select, Pagination } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import SearchField from './search-field/search-field.component';
-import FilterColorField from './componenten/color-filter-field';
-import TypeFilterField from './componenten/type-filter-field';
-import DetailModal from './componenten/modal';
+import FilterColorField from './components/color-filter-field';
+import TypeFilterField from './components/type-filter-field';
+import DetailModal from './components/modal';
 import {
   addCardToDeck,
   fetchCardRequest,
