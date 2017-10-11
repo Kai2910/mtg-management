@@ -2,9 +2,6 @@ import {
   FETCH_CARDS_FAILURE,
   FETCH_CARDS_REQUEST,
   FETCH_CARDS_SUCCESS,
-  FETCH_CARD_REQUEST,
-  FETCH_CARD_FAILURE,
-  FETCH_CARD_SUCCESS,
   FETCH_TYPES_FAILURE,
   FETCH_TYPES_SUCCESS,
   MODAL_HIDE,
@@ -55,26 +52,6 @@ function CardsListReducer(state = initialState, action) {
         ...state,
         errors: action.errors,
         isLoading: false,
-      };
-
-    case FETCH_CARD_FAILURE:
-      return {
-        ...state,
-        errors: action.error,
-        isCardLoading: false,
-      };
-
-    case FETCH_CARD_REQUEST:
-      return {
-        ...state,
-        isCardLoading: true,
-      };
-
-    case FETCH_CARD_SUCCESS:
-      return {
-        ...state,
-        card: action.card,
-        isCardLoading: false,
       };
 
     case FETCH_TYPES_FAILURE:

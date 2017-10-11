@@ -6,11 +6,8 @@ import { push } from 'react-router-redux';
 import CardsFilter from './filter';
 import List from '../../modules/components/widgets/list/list';
 import {
-  addCardToDeck,
-  fetchCardRequest,
   fetchCardsRequest,
   fetchTypesRequest,
-  hideModal,
   searchCardsRequest,
   showModal,
 } from '../../redux/cards-list/actions';
@@ -18,7 +15,7 @@ import {
   fetchDecks,
 } from '../../decks-list/actions';
 import Page from '../../modules/components/widgets/page/page';
-import DetailModal from './modal';
+import Card from '../../modules/components/widgets/card/card';
 
 const mapStateToProps = state => (
   {
@@ -29,7 +26,6 @@ const mapStateToProps = state => (
     isLoggedIn: _.size(state.loginReducer.isLoggedIn) > 0 ? state.loginReducer.isLoggedIn : JSON.parse(localStorage.getItem('isLoggedIn')),
     loading: state.cardsListReducer.isLoading,
     params: state.cardsListReducer.params,
-    searching: state.cardsListReducer.isSearching,
     searchResult: state.cardsListReducer.searchCardsResult,
     singleCard: state.cardsListReducer.card,
     totalCount: state.cardsListReducer.totalCount,
@@ -37,11 +33,6 @@ const mapStateToProps = state => (
     visible: state.cardsListReducer.visible,
   }
 );
-
-const handleAddCardToDeck = (card, deckIndex, dispatch) => {
-  dispatch(addCardToDeck(card, deckIndex));
-  message.success('Card added successfully.');
-};
 
 const handleFilterByColor = (colors, dispatch, currentParams) => {
   const params = { ...currentParams, colors: colors.join(',') };
@@ -74,10 +65,8 @@ const handleRedirect = (errorMessage, path, dispatch) => {
 
 const mapDispatchToProps = dispatch => ({
   loadCards: params => (dispatch(fetchCardsRequest(params))),
-  loadCard: cardId => (dispatch(fetchCardRequest(cardId))),
   loadDecks: () => (dispatch(fetchDecks())),
   loadTypes: () => (dispatch(fetchTypesRequest())),
-  onAddCard: (card, deckIndex) => { handleAddCardToDeck(card, deckIndex, dispatch); },
   onChangePage: (params, page, pageSize) => { handleChangePage(params, page, pageSize, dispatch); },
   onChangePageSize: (params, page, pageSize) => {
     handleChangePage(params, page, pageSize, dispatch);
@@ -87,7 +76,6 @@ const mapDispatchToProps = dispatch => ({
   onRedirect: () => handleRedirect('Sie haben keine Berechtigung für diese Seite.', '/', dispatch),
   onSearch: (params, keyword) => { handleSearch(params, dispatch, keyword); },
   onShowModal: cardId => dispatch(showModal(cardId)),
-  onHideModal: () => dispatch(hideModal()),
 });
 
 class CardsList extends React.Component {
@@ -107,22 +95,16 @@ class CardsList extends React.Component {
   render() {
     const {
       cards,
-      singleCard,
       cardId,
-      cardLoading,
       decks,
       isLoggedIn,
-      loadCard,
-      onAddCard,
       onChangePage,
       onChangePageSize,
       onFilterByColor,
       onFilterByType,
       onRedirect,
       onShowModal,
-      onHideModal,
       params,
-      loading,
       onSearch,
       totalCount,
       types,
@@ -148,15 +130,10 @@ class CardsList extends React.Component {
               params={params}
               totalCount={totalCount}
             />
-            <DetailModal
+            <Card
               cardId={cardId}
-              card={singleCard}
               decks={decks}
               visible={visible}
-              onAddCard={onAddCard}
-              onHideModal={onHideModal}
-              loadCard={loadCard}
-              loading={cardLoading}
             />
           </Page> :
           onRedirect()

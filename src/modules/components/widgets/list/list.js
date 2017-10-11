@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Pagination } from 'antd';
-import Card from '../card/card';
+import Column from '../column/column';
 
 const PAGE_SIZE_OPTIONS = [
   '25',
@@ -15,7 +15,7 @@ const List = ({ cards, onChangePageSize, onChangePage, onShowModal, params, tota
       <Row>
         {
           cards.map(card => (
-            <Card
+            <Column
               style={{ width: 240 }}
               key={card.id}
               card={card}
@@ -24,7 +24,7 @@ const List = ({ cards, onChangePageSize, onChangePage, onShowModal, params, tota
               <div className="custom-image">
                 <img alt={card.name} width="100%" src={card.imageUrl} />
               </div>
-            </Card>
+            </Column>
           ))
         }
       </Row>

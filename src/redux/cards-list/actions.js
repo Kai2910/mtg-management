@@ -4,9 +4,6 @@ import {
   FETCH_CARDS_SUCCESS,
   FETCH_CARDS_FAILURE,
   FETCH_CARDS_REQUEST,
-  FETCH_CARD_FAILURE,
-  FETCH_CARD_REQUEST,
-  FETCH_CARD_SUCCESS,
   FETCH_TYPES_FAILURE,
   FETCH_TYPES_REQUEST,
   FETCH_TYPES_SUCCESS,
@@ -54,21 +51,6 @@ const fetchCardsFailure = errors => (
   }
 );
 
-const fetchCardFailure = error => ({
-  type: FETCH_CARD_FAILURE,
-  error,
-});
-
-const fetchCardRequest = cardId => ({
-  type: FETCH_CARD_REQUEST,
-  cardId,
-});
-
-const fetchCardSuccess = card => ({
-  type: FETCH_CARD_SUCCESS,
-  card,
-});
-
 const fetchTypesFailure = error => ({
   type: FETCH_TYPES_FAILURE,
   error,
@@ -115,9 +97,6 @@ export {
   fetchCardsRequest,
   fetchCardsSuccess,
   fetchCardsFailure,
-  fetchCardFailure,
-  fetchCardRequest,
-  fetchCardSuccess,
   fetchTypesFailure,
   fetchTypesRequest,
   fetchTypesSuccess,
