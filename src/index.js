@@ -19,7 +19,7 @@ import App from './app';
 import registerServiceWorker from './registerServiceWorker';
 import Login from './pages/login/login';
 import CardsList from './pages/cards-list/cards-list';
-import DecksContainer from './decks-list/index';
+import DecksList from './pages/decks/decks';
 import EditDeckContainer from './decks-list/edit-deck-container';
 import NewDeckContainer from './decks-list/new-deck-container';
 import RegisterContainer from './register/register-containter';
@@ -41,7 +41,7 @@ ReactDOM.render(
           <Route exact path="/" component={Login} />
           <Route path="/all-cards" component={CardsList} />
           <Route path="/register" component={RegisterContainer} />
-          <Route path="/decks" component={DecksContainer} />
+          <Route path="/decks" component={DecksList} />
           <Route path="/new-deck" component={NewDeckContainer} />
           <Route path="/edit-deck" component={EditDeckContainer} />
         </App>

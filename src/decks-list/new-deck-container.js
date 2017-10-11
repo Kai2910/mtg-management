@@ -2,7 +2,7 @@ import React from 'react';
 import { message } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { createDeck } from './actions';
+import { createDeck } from '../redux/decks/actions';
 import NewDeckForm from './componenten/deck-form';
 
 const mapDispatchToProps = dispatch => ({

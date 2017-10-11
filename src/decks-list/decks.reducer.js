@@ -3,7 +3,7 @@ import {
   DELETE_DECKS_SUCCESS,
   FETCH_DECKS,
   SET_SELECTED_ROW_KEYS,
-} from './types';
+} from '../redux/decks/types';
 
 const initialState = {
   decks: [],

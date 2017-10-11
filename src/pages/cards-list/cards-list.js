@@ -13,7 +13,7 @@ import {
 } from '../../redux/cards-list/actions';
 import {
   fetchDecks,
-} from '../../decks-list/actions';
+} from '../../redux/decks/actions';
 import Page from '../../modules/components/widgets/page/page';
 import Card from '../../modules/components/widgets/card/card';
 

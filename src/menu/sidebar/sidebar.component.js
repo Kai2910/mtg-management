@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
-import { logout } from '../../login/actions';
+import { logout } from '../../redux/login/actions';
 
 const { Sider } = Layout;
 

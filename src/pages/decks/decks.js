@@ -2,14 +2,14 @@ import React from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import DropOption from '../modules/components/widgets/data-option/DropOption';
-import DecksTable from './componenten/table';
+import DecksTable from './table';
+import Page from '../../modules/components/widgets/page/page';
 import {
   fetchDecks,
   removeDeck,
   removeDecks,
-  setSelectedRowKeys
-} from '../decks-list/actions';
+  setSelectedRowKeys,
+} from '../../redux/decks/actions';
 
 const mapDispatchToProps = dispatch => ({
   onEditDeck: () => (dispatch(push('/edit-deck'))),
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
   selectedRows: state.decksReducer.selectedRows,
 });
 
-class DecksContainer extends React.Component {
+class DecksList extends React.Component {
   componentWillMount() {
     const { onLoadDecks } = this.props;
     onLoadDecks();
@@ -45,7 +45,7 @@ class DecksContainer extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <Page header={'All Decks'}>
         <Button
           type="primary"
           onClick={() => onNewDeck()}
@@ -61,9 +61,9 @@ class DecksContainer extends React.Component {
           onDeleteDecks={onRemoveDecks}
           onEdit={onEditDeck}
         />
-      </div>
+      </Page>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DecksContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DecksList);
