@@ -73,7 +73,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onFilterByColor: (colors, params) => { handleFilterByColor(colors, dispatch, params); },
   onFilterByType: (type, params) => { handleFilterByType(type, dispatch, params); },
-  onRedirect: () => handleRedirect('Sie haben keine Berechtigung für diese Seite.', '/', dispatch),
+  onRedirect: () => handleRedirect('You do not have permission to view this page.', '/', dispatch),
   onSearch: (params, keyword) => { handleSearch(params, dispatch, keyword); },
   onShowModal: cardId => dispatch(showModal(cardId)),
 });

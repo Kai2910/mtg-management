@@ -29,7 +29,7 @@ const checkUserPermissions = (currentUser, users) => {
 
   return ({
     type: CREATE_SESSION_FAILURE,
-    loginError: { message: 'Die Anmeldeinformationen sind falsch.' },
+    loginError: { message: 'The credentials are incorrect.' },
   });
 };
 

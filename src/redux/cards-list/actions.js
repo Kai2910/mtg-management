@@ -1,6 +1,4 @@
-import _ from 'lodash';
 import {
-  ADD_CARD_TO_DECK,
   FETCH_CARDS_SUCCESS,
   FETCH_CARDS_FAILURE,
   FETCH_CARDS_REQUEST,
@@ -8,27 +6,10 @@ import {
   FETCH_TYPES_REQUEST,
   FETCH_TYPES_SUCCESS,
   MODAL_SHOW,
-  MODAL_HIDE,
   SEARCH_CARDS_REQUEST,
   SEARCH_CARDS_FAILURE,
   SEARCH_CARDS_SUCCESS,
 } from './types';
-
-const addCardToDeck = (card, deckIndex) => {
-  const decks = JSON.parse(localStorage.getItem('decks'));
-  const deck = decks[deckIndex];
-  const currentCards = (!_.isEmpty(deck.cards)) ? deck.cards : [];
-
-  currentCards.push(card);
-
-  decks[deckIndex] = { ...deck, cards: currentCards };
-
-  localStorage.setItem('decks', JSON.stringify(decks));
-
-  return ({
-    type: ADD_CARD_TO_DECK,
-  });
-};
 
 const fetchCardsRequest = params => ({
   type: FETCH_CARDS_REQUEST,
@@ -88,12 +69,7 @@ const showModal = cardId => ({
   cardId,
 });
 
-const hideModal = () => ({
-  type: MODAL_HIDE,
-});
-
 export {
-  addCardToDeck,
   fetchCardsRequest,
   fetchCardsSuccess,
   fetchCardsFailure,
@@ -104,6 +80,4 @@ export {
   searchCardsFailure,
   searchCardsSuccess,
   showModal,
-  hideModal,
 };
-
