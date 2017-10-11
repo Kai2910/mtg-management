@@ -9,7 +9,7 @@ import {
   searchCardsFailure,
   searchCardsSuccess,
 } from './actions';
-import Api from '../api';
+import Api from '../../api';
 import {
   FETCH_CARD_REQUEST,
   FETCH_CARDS_REQUEST,

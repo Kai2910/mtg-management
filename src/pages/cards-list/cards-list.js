@@ -1,25 +1,24 @@
 import React from 'react';
 import _ from 'lodash';
-import { Card, Col, message, Row, Select, Pagination } from 'antd';
+import { message } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import SearchField from './search-field/search-field.component';
-import FilterColorField from './components/color-filter-field';
-import TypeFilterField from './components/type-filter-field';
-import DetailModal from './components/modal';
+import CardsFilter from './filter';
+import List from '../../modules/components/widgets/list/list';
 import {
   addCardToDeck,
   fetchCardRequest,
   fetchCardsRequest,
-  fetchTypesRequest, hideModal,
+  fetchTypesRequest,
+  hideModal,
   searchCardsRequest,
   showModal,
-} from './actions';
+} from '../../redux/cards-list/actions';
 import {
   fetchDecks,
-} from '../decks-list/actions';
-
-const Option = Select.Option;
+} from '../../decks-list/actions';
+import Page from '../../modules/components/widgets/page/page';
+import DetailModal from './modal';
 
 const mapStateToProps = state => (
   {
@@ -132,66 +131,23 @@ class CardsList extends React.Component {
 
     return (
       <div>
-        { isLoggedIn ?
-          <div>
-            <Row>
-              <Col xs={13} sm={8} md={7} lg={5} xl={4}>
-                <SearchField
-                  onSearchCards={onSearch}
-                  params={params}
-                />
-              </Col>
-              <Col xs={13} sm={8} md={7} lg={5} xl={4}>
-                <FilterColorField
-                  onFilterByColor={onFilterByColor}
-                  params={params}
-                />
-              </Col>
-              <Col xs={13} sm={8} md={7} lg={5} xl={4}>
-                <TypeFilterField
-                  onFilterByType={onFilterByType}
-                  params={params}
-                >
-                  {
-                    types.map(type => <Option key={type}>{type}</Option>)
-                  }
-                </TypeFilterField>
-              </Col>
-            </Row>
-            <br />
-            <Row>
-              {
-                cards.map(card => (
-                  <Col xs={13} sm={10} md={7} lg={5} xl={4} key={card.multiverseid}>
-                    <Card
-                      style={{ width: 240 }}
-                      bodyStyle={{ padding: 0 }}
-                      key={card.id}
-                      loading={loading}
-                      onClick={() => onShowModal(card.multiverseid)}
-                      bordered={false}
-                    >
-                      <div className="custom-image">
-                        <img alt={card.name} width="100%" src={card.imageUrl} />
-                      </div>
-                    </Card>
-                  </Col>
-                ))
-              }
-            </Row>
-            <Row>
-              <Col>
-                <Pagination
-                  showSizeChanger
-                  onShowSizeChange={(page, pageSize) => onChangePageSize(params, page, pageSize)}
-                  onChange={(page, pageSize) => onChangePage(params, page, pageSize)}
-                  defaultCurrent={params.page}
-                  total={Number(totalCount)}
-                  defaultPageSize={params.pageSize}
-                  pageSizeOptions={['25', '50', '75', '100']}
-                />
-              </Col>
-            </Row>
+        {isLoggedIn ?
+          <Page header="All Cards">
+            <CardsFilter
+              onFilterByColor={onFilterByColor}
+              onFilterByType={onFilterByType}
+              onSearchCards={onSearch}
+              params={params}
+              types={types}
+            />
+            <List
+              cards={cards}
+              onChangePageSize={onChangePageSize}
+              onChangePage={onChangePage}
+              onShowModal={onShowModal}
+              params={params}
+              totalCount={totalCount}
+            />
             <DetailModal
               cardId={cardId}
               card={singleCard}
@@ -202,7 +158,7 @@ class CardsList extends React.Component {
               loadCard={loadCard}
               loading={cardLoading}
             />
-          </div> :
+          </Page> :
           onRedirect()
         }
       </div>

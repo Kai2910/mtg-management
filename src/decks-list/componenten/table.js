@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal } from 'antd';
-import DataTable from '../../components/DataTable/DataTable';
-import DropOption from '../../components/DropOption/DropOption';
+import DataTable from '../../modules/components/widgets/data-table/DataTable';
+import DropOption from '../../modules/components/widgets/data-option/DropOption';
 
 const confirm = Modal.confirm;
 

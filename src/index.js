@@ -18,7 +18,7 @@ import './index.css';
 import App from './app';
 import registerServiceWorker from './registerServiceWorker';
 import Login from './login/index';
-import CardsList from './cards-list/cards-list.component';
+import CardsList from './pages/cards-list/cards-list';
 import DecksContainer from './decks-list/index';
 import EditDeckContainer from './decks-list/edit-deck-container';
 import NewDeckContainer from './decks-list/new-deck-container';

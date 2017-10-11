@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import DropOption from '../components/DropOption/DropOption';
+import DropOption from '../modules/components/widgets/data-option/DropOption';
 import DecksTable from './componenten/table';
 import {
   fetchDecks,
