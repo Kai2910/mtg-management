@@ -17,7 +17,7 @@ import reducer from './reducers';
 import './index.css';
 import App from './app';
 import registerServiceWorker from './registerServiceWorker';
-import Login from './login/index';
+import Login from './pages/login/login';
 import CardsList from './pages/cards-list/cards-list';
 import DecksContainer from './decks-list/index';
 import EditDeckContainer from './decks-list/edit-deck-container';
