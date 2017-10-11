@@ -2,8 +2,8 @@ import React from 'react';
 import { message } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { createDeck } from '../redux/decks/actions';
-import NewDeckForm from './componenten/deck-form';
+import { createDeck } from '../../redux/decks/actions';
+import NewDeckForm from '../../modules/components/widgets/deck-form/deck-form';
 
 const mapDispatchToProps = dispatch => ({
   onRedirect: () => (dispatch(push('/decks'))),

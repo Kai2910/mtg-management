@@ -20,8 +20,8 @@ import registerServiceWorker from './registerServiceWorker';
 import Login from './pages/login/login';
 import CardsList from './pages/cards-list/cards-list';
 import DecksList from './pages/decks/decks';
-import EditDeckContainer from './decks-list/edit-deck-container';
-import NewDeckContainer from './decks-list/new-deck-container';
+import EditDeck from './pages/edit-deck/edit-deck';
+import NewDeck from './pages/new-deck/new-deck';
 import RegisterContainer from './register/register-containter';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -42,8 +42,8 @@ ReactDOM.render(
           <Route path="/all-cards" component={CardsList} />
           <Route path="/register" component={RegisterContainer} />
           <Route path="/decks" component={DecksList} />
-          <Route path="/new-deck" component={NewDeckContainer} />
-          <Route path="/edit-deck" component={EditDeckContainer} />
+          <Route path="/new-deck" component={NewDeck} />
+          <Route path="/edit-deck" component={EditDeck} />
         </App>
       </LocaleProvider>
     </Router>

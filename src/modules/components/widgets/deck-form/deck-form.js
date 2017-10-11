@@ -4,7 +4,7 @@ import { Button, Form, Icon, Input } from 'antd';
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
-const NewDeckForm = ({ form, handleSubmit, onRedirect }) => (
+const DeckForm = ({ form, handleSubmit, onRedirect }) => (
   <div>
     <div style={{ marginBottom: '16px' }}>
       <Button type="primary" onClick={() => onRedirect()}>
@@ -35,4 +35,4 @@ const NewDeckForm = ({ form, handleSubmit, onRedirect }) => (
   </div>
 );
 
-export default Form.create()(NewDeckForm);
+export default Form.create()(DeckForm);
