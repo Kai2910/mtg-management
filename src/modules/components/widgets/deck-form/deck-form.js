@@ -35,4 +35,11 @@ const DeckForm = ({ form, handleSubmit, onRedirect }) => (
   </div>
 );
 
-export default Form.create()(DeckForm);
+const mapPropsToFields = ({ deck = {} }) => {
+  return ({
+    deckName: { value: deck.deckName },
+    description: { value: deck.description },
+  });
+};
+
+export default Form.create({ mapPropsToFields })(DeckForm);

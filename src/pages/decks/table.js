@@ -22,7 +22,7 @@ const DecksTable = ({
 
   const handleMenuClick = (deck, e) => {
     if (e.key === '1') {
-      onEdit();
+      onEdit(deck.id);
     } else if (e.key === '2') {
       confirm({
         title: `Möchten Sie "${deck.deckName}" wirklich löschen?`,

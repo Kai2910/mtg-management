@@ -20,6 +20,7 @@
 	- [x] Add description for a Deck
 - [ ] Functionality to edit Decks
 	- [ ] Remove Cards from a Deck
-	- [ ] Rename the Deck
-	- [ ] Edit the description
+	- [x] Rename the Deck
+	- [x] Edit the description
+	- [ ] Show Cards	
 - [ ] Tree for the Sets and there cards (I’m unsure it is possible)

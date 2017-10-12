@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const parseManaCosts = (manaCosts) => {
   const found = [];
   if (manaCosts !== undefined) {
@@ -12,6 +14,13 @@ const parseManaCosts = (manaCosts) => {
   return found;
 };
 
+const findDeck = (deckId) => {
+  const decks = JSON.parse(localStorage.getItem('decks'));
+
+  return  _.find(decks, d => d.id === deckId);
+};
+
 export {
+  findDeck,
   parseManaCosts,
 }

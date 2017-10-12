@@ -43,7 +43,7 @@ ReactDOM.render(
           <Route path="/register" component={RegisterContainer} />
           <Route path="/decks" component={DecksList} />
           <Route path="/new-deck" component={NewDeck} />
-          <Route path="/edit-deck" component={EditDeck} />
+          <Route path="/edit-deck/:deckId" component={EditDeck} />
         </App>
       </LocaleProvider>
     </Router>

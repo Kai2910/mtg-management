@@ -14,7 +14,7 @@ const handleSubmit = (event, form) => {
   form.validateFields((err, values) => {
     if (!err) {
       createDeck(values);
-      message.success('Das Deck wurde erfolgreich gespeichert.');
+      message.success('The deck has been successfully saved');
       form.resetFields(['deckName', 'description']);
       form.getFieldInstance('deckName').focus();
     }

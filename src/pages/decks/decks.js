@@ -12,7 +12,7 @@ import {
 } from '../../redux/decks/actions';
 
 const mapDispatchToProps = dispatch => ({
-  onEditDeck: () => (dispatch(push('/edit-deck'))),
+  onEditDeck: deckId => (dispatch(push(`/edit-deck/${deckId}`))),
   onRemoveDeck: deckId => (dispatch(removeDeck(deckId))),
   onRemoveDecks: selectedDecks => (dispatch(removeDecks(selectedDecks))),
   onLoadDecks: () => (dispatch(fetchDecks())),

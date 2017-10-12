@@ -58,10 +58,21 @@ const removeDeck = (deckId) => {
   });
 };
 
+const updateDeck = (deckId, updatedDeck) => {
+  const decks = JSON.parse(localStorage.decks);
+
+  const deckIndex = _.findIndex(decks, d => d.id === deckId);
+
+  decks[deckIndex] = { ...updatedDeck, id: deckId };
+
+  localStorage.setItem('decks', JSON.stringify(decks));
+};
+
 export {
   createDeck,
   fetchDecks,
   removeDeck,
   removeDecks,
   setSelectedRowKeys,
+  updateDeck,
 };
