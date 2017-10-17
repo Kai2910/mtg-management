@@ -8,8 +8,9 @@ import {
   MODAL_HIDE,
 } from './types';
 
-const addCardToDeck = (card, deckIndex) => {
+const addCardToDeck = (card, deckId) => {
   const decks = JSON.parse(localStorage.getItem('decks'));
+  const deckIndex = _.findIndex(decks, d => d.id === String(deckId));
   const deck = decks[deckIndex];
   const currentCards = (!_.isEmpty(deck.cards)) ? deck.cards : [];
 

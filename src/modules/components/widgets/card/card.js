@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { Button, Col, Dropdown, Icon, message, Menu, Modal, Row } from 'antd';
 import { connect } from 'react-redux';
 import { addCardToDeck, fetchCardRequest, hideModal } from '../../../../redux/card/actions';
@@ -14,8 +15,8 @@ const menu = (card, currentDecks, onAddCard) => (
   </Menu>
 );
 
-const handleAddCardToDeck = (card, deckIndex, dispatch) => {
-  dispatch(addCardToDeck(card, deckIndex));
+const handleAddCardToDeck = (card, deckId, dispatch) => {
+  dispatch(addCardToDeck(card, deckId));
   message.success('Card added successfully.');
 };
 
@@ -44,7 +45,7 @@ class Card extends React.Component {
   }
 
   render() {
-    const { card, decks, onAddCard, onHideModal, visible } = this.props;
+    const { card, decks, onAddCard, onHideModal, onRemoveCard, visible, deckId } = this.props;
 
     return (
       <Modal
@@ -78,9 +79,13 @@ class Card extends React.Component {
             <p>Card Number: {card.number}</p>
             <p>Artist: {card.artist}</p>
             <p>
-              <Dropdown overlay={menu(card, decks, onAddCard)}>
-                <Button type="primary"><Icon type="plus" /> Add To</Button>
-              </Dropdown>
+              {
+                !_.isEmpty(decks) ?
+                  <Dropdown overlay={menu(card, decks, onAddCard)}>
+                    <Button type="primary"><Icon type="plus" /> Add To</Button>
+                  </Dropdown> :
+                  <Button type="danger" onClick={() => onRemoveCard(card.id, deckId)}>Remove</Button>
+              }
             </p>
           </Col>
         </Row>

@@ -6,6 +6,8 @@ import {
   FETCH_DECKS,
   SET_SELECTED_ROW_KEYS,
 } from './types';
+import { MODAL_HIDE } from '../card/types';
+
 
 const createDeck = (values) => {
   const decks = _.isEmpty(localStorage.getItem('decks')) ? [] : JSON.parse(localStorage.getItem('decks'));
@@ -34,7 +36,7 @@ const removeDecks = (selectedDecks) => {
     return localStorage.setItem('decks', JSON.stringify(decks));
   });
 
-  message.success('Die ausgewählten Decks wurden erfolgreich gelöscht.');
+  message.success('Decks successfully deleted.');
 
   return ({
     type: DELETE_DECKS_SUCCESS,
@@ -48,7 +50,7 @@ const removeDeck = (deckId) => {
 
   _.remove(decks, d => d.id === deckId);
 
-  message.success('Das ausgewählte Deck wurde erfolgreich gelöscht.');
+  message.success('Deck successfully deleted.');
 
   localStorage.setItem('decks', JSON.stringify(decks));
 
@@ -63,14 +65,30 @@ const updateDeck = (deckId, updatedDeck) => {
 
   const deckIndex = _.findIndex(decks, d => d.id === deckId);
 
-  decks[deckIndex] = { ...updatedDeck, id: deckId };
+  decks[deckIndex] = { ...decks[deckIndex], deckName: updatedDeck.deckName, description: updatedDeck.description };
 
   localStorage.setItem('decks', JSON.stringify(decks));
+};
+
+const removeCard = (cardId, deckId) => {
+  const decks = JSON.parse(localStorage.decks);
+  const deckIndex = _.findIndex(decks, d => d.id === deckId);
+  const cards = decks[deckIndex].cards;
+  _.remove(cards, c => c.id === cardId);
+
+  localStorage.setItem('decks', JSON.stringify(decks));
+
+  message.success('Card successfully deleted');
+
+  return {
+    type: MODAL_HIDE,
+  };
 };
 
 export {
   createDeck,
   fetchDecks,
+  removeCard,
   removeDeck,
   removeDecks,
   setSelectedRowKeys,
