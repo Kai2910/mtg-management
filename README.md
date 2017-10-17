@@ -18,9 +18,9 @@
 	- [x] Add Cards to a Deck
 	- [x] Remove Deck
 	- [x] Add description for a Deck
-- [ ] Functionality to edit Decks
-	- [ ] Remove Cards from a Deck
+- [x] Functionality to edit Decks
+	- [x] Remove Cards from a Deck
 	- [x] Rename the Deck
 	- [x] Edit the description
-	- [ ] Show Cards	
+	- [x] Show Cards	
 - [ ] Tree for the Sets and there cards (I’m unsure it is possible)
